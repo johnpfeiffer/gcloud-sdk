@@ -4,7 +4,7 @@ MAINTAINER John Pfeiffer "https://github.org/johnpfeiffer"
 # https://cloud.google.com/sdk/docs/quickstart-linux
 env VERSION 156.0.0
 run echo ${VERSION}
-eng GOVERSION 1.8.3
+env GOVERSION 1.8.3
 
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 RUN apt-get update
