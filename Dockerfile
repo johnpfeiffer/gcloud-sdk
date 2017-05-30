@@ -15,9 +15,14 @@ RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" && \
 RUN apt-get update && apt-get install -y google-cloud-sdk
 RUN gcloud --version
 
+# https://golang.org/dl/
+# https://github.com/docker-library/golang/blob/64b88dc3e9d83e71eafc000fed1f0d5e289b3e65/1.8/Dockerfile
 ENV GOVERSION 1.8.3
 RUN wget --quiet https://storage.googleapis.com/golang/go${GOVERSION}.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf go${GOVERSION}.linux-amd64.tar.gz
 RUN export PATH=$PATH:/usr/local/go/bin
-RUN /usr/local/go/bin/go version
+ENV GOROOT /usr/local/go
+ENV PATH=$PATH:$GOROOT/bin
+ENV GOPATH /root
+RUN go version
 
